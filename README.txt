@@ -2,6 +2,7 @@ This demo shows how to get data from exchangerate.host for base currency = BTC a
 Data loading is scheduled for every 3 hours.
 Historical data can be also reloaded.
 Execute docker-compose up to launch containers with Airflow (Local executor) and Clickhouse.
+Airflow GUI is available on http://127.0.0.1:8080/
 In the initsql\init_database.sql there is an init script for Clickhouse.
 The schema's names for data layers can be changed according to a naming convention.
 .env file has Clickhouse user/password (that stuff shoudn't be stored in Git and here is just for demo reason).
