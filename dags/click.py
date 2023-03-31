@@ -27,13 +27,16 @@ def extract_from_API(date: str = "latest") -> Dict[str,float]:
     }  
     url = f"https://api.exchangerate.host/{date}"
     logging.info(f"url {url}")
-    response = requests.get(url,params=params)
-    if response.status_code == 200:
+    try:
+        response = requests.get(url,params=params)
+    except Exception as e:
+        logging.error(f"API extraction failed with exception {e}")
+    if response != None and response.status_code == 200:        
         data = response.json()["rates"]
         logging.info(f"data {data}")
     else:
         logging.error(f"Unable to get data for {url}")
-        raise Exception("API extraction failed!")
+        raise Exception("API extraction failed with status code {response.status_code}")
     return list(data.items())
 
 def get_connection() -> Any:
